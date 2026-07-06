@@ -83,7 +83,7 @@ public class CartItemDaoImpl implements CartItemDao {
                     item.setAddtime(rs.getTimestamp("addtime"));
                     
                     Product product = new Product();
-                    product.setPid(rs.getInt("pid"));
+                    product.setId(rs.getInt("pid"));
                     item.setProduct(product);
                     
                     return item;
@@ -122,7 +122,7 @@ public class CartItemDaoImpl implements CartItemDao {
                 
                 // 创建 Product 并设置 pid（临时保存）
                 Product product = new Product();
-                product.setPid(rs.getInt("pid"));
+                product.setId(rs.getInt("pid"));
                 item.setProduct(product);
                 
                 return item;
@@ -133,7 +133,7 @@ public class CartItemDaoImpl implements CartItemDao {
         ProductDao productDao = new ProductDaoImpl();
         for (CartItem item : items) {
             if (item.getProduct() != null) {
-                Product fullProduct = productDao.findById(item.getProduct().getPid());
+                Product fullProduct = productDao.findById(item.getProduct().getId());
                 item.setProduct(fullProduct);
             }
         }

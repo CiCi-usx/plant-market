@@ -60,7 +60,7 @@ public class CartAddServlet extends HttpServlet {
             
             // 4. 创建商品对象（只需要pid）
             Product product = new Product();
-            product.setPid(pid);
+            product.setId(pid);
             
             // 5. 添加到购物车
             cartService.addToCart(uid, product, quantity);
