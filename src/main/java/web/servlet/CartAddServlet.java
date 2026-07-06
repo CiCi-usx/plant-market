@@ -36,12 +36,12 @@ public class CartAddServlet extends HttpServlet {
             }
             
             // 2. 获取参数
-            String pidStr = request.getParameter("pid");
-            String quantityStr = request.getParameter("quantity");
+            String pidStr = request.getParameter("pId");
+            String quantityStr = "1";
             
             // 参数校验
-            if (pidStr == null || pidStr.trim().isEmpty() || quantityStr == null || quantityStr.trim().isEmpty()) {
-                System.out.println("pid or quantity is not proper. CartAddServlet.java(44)");
+            if (pidStr == null || pidStr.trim().isEmpty()) {
+                System.out.println("pid is not proper. CartAddServlet.java(44)");
                 response.sendRedirect(request.getContextPath() + "/CartViewServlet");
                 return;
             }
