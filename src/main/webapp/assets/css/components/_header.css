@@ -1,0 +1,5 @@
+.c-header {
+    padding: var(--spacing-md);
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-md);
+}

@@ -1,0 +1,65 @@
+/* components/_login.css */
+
+/* 验证码特殊布局 */
+.captcha-row {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: flex-start;
+}
+
+.captcha-input {
+    flex: 1;
+}
+
+.captcha-image {
+    height: 42px;
+    cursor: pointer;
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--color-border);
+}
+
+/* 记住我复选框行 */
+.checkbox-row {
+    margin: var(--spacing-md) 0;
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-row input[type="checkbox"] {
+    margin-right: var(--spacing-xs);
+    width: auto;
+}
+
+.checkbox-row label {
+    margin-bottom: 0;
+    font-weight: normal;
+    display: inline-block;
+}
+
+/* 错误信息样式 - 与 register 保持一致 at utilities/_feedback.css */
+
+/* 响应式设计 */
+@media (max-width: 640px) {
+    .login-container {
+        margin: var(--spacing-lg);
+        padding: var(--spacing-lg);
+    }
+
+    .captcha-row {
+        flex-direction: column;
+    }
+
+    .captcha-image {
+        width: 100%;
+        height: auto;
+        min-height: 40px;
+    }
+
+    .login-actions {
+        flex-direction: column;
+    }
+
+    .login-actions input {
+        width: 100%;
+    }
+}

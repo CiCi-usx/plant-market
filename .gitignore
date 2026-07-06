@@ -1,0 +1,17 @@
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+.qoder
+
+# 编译输出
+target/
+
+# 配置文件（包含敏感信息，如果有的话）
+application.properties
+druid.properties
+config.properties
+*.conf

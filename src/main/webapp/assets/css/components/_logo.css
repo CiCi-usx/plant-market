@@ -1,0 +1,9 @@
+.c-logo {
+    font-size: var(--font-size-xxl);
+    color: var(--color-primary);
+    text-decoration: none;
+    font-family: 'Microsoft YaHei', sans-serif;
+}
+.c-logo:hover {
+    color: var(--color-primary-dark);
+}

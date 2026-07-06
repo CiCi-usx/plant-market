@@ -1,0 +1,111 @@
+/* components/_register.css */
+.register-container {
+    max-width: 500px;
+    margin: var(--spacing-xxl) auto;
+    padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-lg);
+    background-color: var(--color-white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.register-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.register-header h2 {
+    font-size: var(--font-size-xxl);
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-xs);
+}
+
+.register-header p {
+    color: var(--color-text-lighter);
+    font-size: var(--font-size-sm);
+}
+
+.register-form {
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-group-inline {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.form-group-inline .form-group {
+    margin-bottom: 0;
+    flex: 1;
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    padding-top: var(--spacing-xs);
+}
+
+.form-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--color-border-light);
+}
+
+.form-actions input {
+    min-width: 120px;
+}
+
+.register-footer {
+    text-align: center;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--color-border-light);
+    color: var(--color-text-light);
+    font-size: var(--font-size-sm);
+}
+
+.register-footer a {
+    font-weight: 500;
+}
+
+/* 错误信息样式 at utilities/_feedback.css */
+
+/* 提示信息样式 */
+.info-text {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-lighter);
+    margin-top: var(--spacing-xs);
+}
+
+/* 响应式设计 */
+@media (max-width: 640px) {
+    .register-container {
+        margin: var(--spacing-lg);
+        padding: var(--spacing-lg);
+    }
+    
+    td:first-child {
+        width: 80px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .form-actions input {
+        width: 100%;
+    }
+    
+    .radio-group {
+        flex-wrap: wrap;
+        gap: var(--spacing-sm);
+    }
+}

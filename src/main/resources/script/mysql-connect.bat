@@ -1,0 +1,1 @@
+mysql -h sho.usxjsj.cn -P 3306 -u u23136236 --skip-ssl -p

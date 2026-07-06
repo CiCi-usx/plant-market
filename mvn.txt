@@ -1,0 +1,41 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------------< com.example:exp4 >--------------------------
+[INFO] Building exp4 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ war ]---------------------------------
+[WARNING] The artifact mysql:mysql-connector-java:jar:8.0.33 has been relocated to com.mysql:mysql-connector-j:jar:8.0.33: MySQL Connector/J artifacts moved to reverse-DNS compliant Maven 2+ coordinates.
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ exp4 ---
+[INFO] Deleting D:\schools\web\exp4\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ exp4 ---
+[INFO] Copying 15 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ exp4 ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 68 source files with javac [debug target 17] to target\classes
+[INFO] /D:/schools/web/exp4/src/main/java/web/servlet/OrderSubmitServlet.java: 某些输入文件使用了未经检查或不安全的操作。
+[INFO] /D:/schools/web/exp4/src/main/java/web/servlet/OrderSubmitServlet.java: 有关详细信息, 请使用 -Xlint:unchecked 重新编译。
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ exp4 ---
+[INFO] skip non existing resourceDirectory D:\schools\web\exp4\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ exp4 ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ exp4 ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- war:3.3.2:war (default-war) @ exp4 ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [exp4] in [D:\schools\web\exp4\target\web-exp4]
+[INFO] Processing war project
+[INFO] Copying webapp resources [D:\schools\web\exp4\src\main\webapp]
+[INFO] Building war: D:\schools\web\exp4\target\web-exp4.war
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.640 s
+[INFO] Finished at: 2026-06-22T09:20:26+08:00
+[INFO] ------------------------------------------------------------------------

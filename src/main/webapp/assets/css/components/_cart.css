@@ -1,0 +1,646 @@
+/* components/_cart.css */
+
+/* ============================================================
+   1. PAGE LAYOUT
+   ============================================================ */
+.cart-page {
+    min-height: 100vh;
+    background-color: var(--color-background);
+}
+
+.cart-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-lg) var(--spacing-md) var(--spacing-xxl);
+}
+
+/* 左栏 + 右侧汇总的两栏布局 */
+.cart-layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: var(--spacing-lg);
+    align-items: start;
+}
+
+.cart-left {
+    min-width: 0;
+    /* 防止内容撑破网格 */
+}
+
+/* ============================================================
+   2. HEADER
+   ============================================================ */
+.cart-header {
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-border-light);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.cart-header__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+.cart-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-text);
+    flex-shrink: 0;
+}
+
+.cart-logo:hover {
+    color: var(--color-text);
+}
+
+.cart-logo__leaf {
+    font-size: var(--font-size-xl);
+}
+
+.cart-nav {
+    display: flex;
+    gap: var(--spacing-lg);
+    flex: 1;
+}
+
+.cart-nav a {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+    transition: color var(--transition-fast);
+}
+
+.cart-nav a:hover,
+.cart-nav a.active {
+    color: var(--color-primary);
+}
+
+.cart-header__user {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    flex-shrink: 0;
+}
+
+.cart-user-chip {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background-color: var(--color-background);
+    border-radius: var(--border-radius-lg);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+}
+
+.cart-header__logout {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-lighter);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-sm);
+    transition: all var(--transition-fast);
+}
+
+.cart-header__logout:hover {
+    color: var(--color-danger);
+    border-color: var(--color-danger);
+    background-color: #fff5f5;
+}
+
+/* ============================================================
+   3. BREADCRUMB
+   ============================================================ */
+.cart-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-lighter);
+}
+
+.cart-breadcrumb a {
+    color: var(--color-text-lighter);
+    transition: color var(--transition-fast);
+}
+
+.cart-breadcrumb a:hover {
+    color: var(--color-primary);
+}
+
+.cart-breadcrumb__sep {
+    color: var(--color-border);
+}
+
+/* ============================================================
+   4. PAGE TITLE & SUBTITLE
+   ============================================================ */
+.cart-page-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-xs);
+}
+
+.cart-count-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px var(--spacing-sm);
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-size: var(--font-size-xs);
+    font-weight: normal;
+    border-radius: var(--border-radius-lg);
+}
+
+.cart-page-subtitle {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-lighter);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* ============================================================
+   5. ACTIONS BAR (清空购物车)
+   ============================================================ */
+.cart-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: var(--spacing-sm);
+}
+
+.cart-btn-clear {
+    padding: var(--spacing-xs) var(--spacing-md);
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-sm);
+    color: var(--color-text-lighter);
+    font-size: var(--font-size-sm);
+    transition: all var(--transition-fast);
+}
+
+.cart-btn-clear:hover {
+    border-color: var(--color-danger);
+    color: var(--color-danger);
+    background-color: #fff5f5;
+}
+
+/* ============================================================
+   6. TABLE HEADER (桌面端列标题)
+   ============================================================ */
+.cart-table-header {
+    display: grid;
+    grid-template-columns: 1fr 120px 140px 120px 40px;
+    align-items: center;
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-lighter);
+    border-bottom: 1px solid var(--color-border-light);
+    margin-bottom: var(--spacing-xs);
+}
+
+/* ============================================================
+   7. CART ITEM CARD
+   ============================================================ */
+.cart-item-card {
+    display: grid;
+    grid-template-columns: 1fr 120px 140px 120px 40px;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--border-radius-md);
+    margin-bottom: var(--spacing-sm);
+    transition: box-shadow var(--transition-fast);
+
+    /* 入场动画（延迟由 JSP 内联 style 控制） */
+    animation: cartItemIn 0.3s ease both;
+}
+
+.cart-item-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+@keyframes cartItemIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 商品信息列 */
+.cart-item__info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    min-width: 0;
+}
+
+.cart-item__img {
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--color-border-light);
+    flex-shrink: 0;
+}
+
+.cart-item__img-placeholder {
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--border-radius-sm);
+    flex-shrink: 0;
+}
+
+.cart-item__name {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-xs);
+    /* 超长商品名截断 */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.cart-item__name a {
+    color: var(--color-text);
+    transition: color var(--transition-fast);
+}
+
+.cart-item__name a:hover {
+    color: var(--color-primary);
+}
+
+.cart-item__tag {
+    display: inline-block;
+    padding: 1px var(--spacing-xs);
+    background-color: #e8f4e8;
+    color: #2d7a2d;
+    font-size: var(--font-size-xs);
+    border-radius: var(--border-radius-sm);
+}
+
+/* 单价 & 小计 */
+.cart-item__price,
+.cart-item__subtotal {
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+    text-align: center;
+}
+
+.cart-item__subtotal {
+    font-weight: 500;
+    color: var(--color-danger);
+}
+
+/* ============================================================
+   8. QTY CONTROL
+   ============================================================ */
+.cart-qty-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.cart-qty-btn {
+    width: 30px;
+    height: 32px;
+    padding: 0;
+    background-color: var(--color-background);
+    border: none;
+    border-radius: 0;
+    font-size: var(--font-size-md);
+    color: var(--color-text-light);
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+    line-height: 1;
+}
+
+.cart-qty-btn:hover:not(:disabled) {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.cart-qty-btn:disabled {
+    color: var(--color-border);
+    cursor: not-allowed;
+}
+
+.cart-qty-input {
+    width: 44px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    border-left: 1px solid var(--color-border);
+    border-right: 1px solid var(--color-border);
+    border-radius: 0;
+    text-align: center;
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+    -moz-appearance: textfield;
+}
+
+.cart-qty-input::-webkit-outer-spin-button,
+.cart-qty-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.cart-qty-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+/* ============================================================
+   9. DELETE BUTTON
+   ============================================================ */
+.cart-btn-delete {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: none;
+    border: 1px solid var(--color-border-light);
+    border-radius: 50%;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-lighter);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+    margin: 0 auto;
+}
+
+.cart-btn-delete:hover {
+    background-color: var(--color-danger);
+    border-color: var(--color-danger);
+    color: var(--color-white);
+}
+
+/* ============================================================
+   10. EMPTY STATE
+   ============================================================ */
+.cart-empty {
+    text-align: center;
+    padding: var(--spacing-xxl) var(--spacing-lg);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--border-radius-md);
+}
+
+.cart-empty__icon {
+    font-size: 56px;
+    margin-bottom: var(--spacing-md);
+    opacity: 0.4;
+}
+
+.cart-empty h3 {
+    font-size: var(--font-size-lg);
+    color: var(--color-text);
+    margin-bottom: var(--spacing-sm);
+}
+
+.cart-empty p {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-lighter);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* ============================================================
+   11. ORDER SUMMARY (右侧汇总卡片)
+   ============================================================ */
+.cart-summary {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+    position: sticky;
+    top: 72px;
+    /* header 高度 + 间隔 */
+}
+
+.cart-summary__title {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    color: var(--color-text);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--color-border-light);
+    margin-bottom: var(--spacing-md);
+}
+
+.cart-summary__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-sm);
+}
+
+.cart-summary__row .val {
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+.cart-summary__row--total {
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--color-border-light);
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+.cart-summary__row--total .val {
+    font-size: var(--font-size-xl);
+    color: var(--color-danger);
+    font-weight: 600;
+}
+
+.cart-summary__free-ship {
+    color: var(--color-success);
+}
+
+/* ============================================================
+   12. CHECKOUT & CONTINUE BUTTONS
+   ============================================================ */
+.cart-btn-checkout {
+    display: block;
+    width: 100%;
+    padding: var(--spacing-md);
+    margin-top: var(--spacing-md);
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    text-align: center;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+}
+
+.cart-btn-checkout:hover:not(:disabled) {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+    color: var(--color-white);
+}
+
+.cart-btn-checkout:disabled {
+    background-color: var(--color-border);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* 空购物车页内联版（去逛逛按钮） */
+.cart-btn-checkout--inline {
+    display: inline-block;
+    width: auto;
+    padding: var(--spacing-sm) var(--spacing-xl);
+    margin-top: 0;
+}
+
+.cart-btn-continue {
+    display: block;
+    text-align: center;
+    margin-top: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-lighter);
+    transition: color var(--transition-fast);
+}
+
+.cart-btn-continue:hover {
+    color: var(--color-primary);
+}
+
+/* ============================================================
+   13. TOAST 通知
+   ============================================================ */
+#toast {
+    position: fixed;
+    bottom: var(--spacing-xl);
+    left: 50%;
+    transform: translateX(-50%) translateY(16px);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background-color: rgba(0, 0, 0, 0.75);
+    color: var(--color-white);
+    font-size: var(--font-size-sm);
+    border-radius: var(--border-radius-lg);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+    white-space: nowrap;
+    z-index: 999;
+}
+
+#toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ============================================================
+   14. RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+    .cart-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .cart-summary {
+        position: static;
+    }
+
+    .cart-table-header {
+        display: none;
+    }
+
+    .cart-item-card {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto;
+    }
+
+    .cart-item__info {
+        grid-column: 1 / -1;
+    }
+
+    .cart-item__price {
+        text-align: left;
+        font-size: var(--font-size-xs);
+        color: var(--color-text-lighter);
+    }
+
+    .cart-item__price::before {
+        content: "单价：";
+    }
+
+    .cart-item__subtotal {
+        text-align: right;
+    }
+
+    .cart-qty-control {
+        justify-self: start;
+    }
+
+    .cart-btn-delete {
+        justify-self: end;
+        align-self: start;
+    }
+}
+
+@media (max-width: 480px) {
+    .cart-nav {
+        display: none;
+    }
+
+    .cart-user-chip {
+        display: none;
+    }
+
+    .cart-item-card {
+        grid-template-columns: 1fr auto;
+    }
+
+    .cart-item__subtotal {
+        grid-column: 1 / -1;
+        text-align: left;
+    }
+
+    .cart-qty-control {
+        grid-column: 1 / 2;
+    }
+
+    .cart-btn-delete {
+        grid-column: 2 / 3;
+        grid-row: 3;
+    }
+}
