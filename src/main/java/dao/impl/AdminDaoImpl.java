@@ -15,11 +15,6 @@ public class AdminDaoImpl implements AdminDao {
 
     @Override
     public Admin findAdminByNameAndPwd(String adminName, String adminPwd) {
-
-        /*
-        // Debug
-        DebugUtil.printAdminParams(adminName, adminPwd);
-        */
        
         try {
             String sql = "select * from exp4_admin where adminName = ? and adminPwd = ?";
