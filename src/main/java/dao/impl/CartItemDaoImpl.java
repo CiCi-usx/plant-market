@@ -31,7 +31,7 @@ public class CartItemDaoImpl implements CartItemDao {
                     
                     // 创建 Product 并设置 pid
                     Product product = new Product();
-                    product.setPid(rs.getInt("pid"));
+                    product.setId(rs.getInt("pid"));
                     item.setProduct(product);
                     
                     return item;
@@ -45,7 +45,7 @@ public class CartItemDaoImpl implements CartItemDao {
     @Override
     public void add(CartItem item) {
         // 先检查是否已存在
-        CartItem existing = isExisted(item.getUid(), item.getProduct().getPid());
+        CartItem existing = isExisted(item.getUid(), item.getProduct().getId());
         
         if (existing != null) {
             // 如果已存在，更新数量（累加）
@@ -56,7 +56,7 @@ public class CartItemDaoImpl implements CartItemDao {
             String sql = "INSERT INTO exp4_cart_item (uid, pid, quantity, addtime) VALUES (?, ?, ?, ?)";
             template.update(sql, 
                 item.getUid(), 
-                item.getProduct().getPid(), 
+                item.getProduct().getId(), 
                 item.getQuantity(), 
                 new java.util.Date()
             );

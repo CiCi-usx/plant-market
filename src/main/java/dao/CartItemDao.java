@@ -1,6 +1,7 @@
 package dao;
 
 import domain.CartItem;
+import java.util.List;
 
 public interface CartItemDao {
     CartItem isExisted(Integer uid, Integer pid);

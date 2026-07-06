@@ -1,60 +1,83 @@
-package web.servlet;
+package servlet;
 
-import dao.ProductDao;
-import dao.impl.ProductDaoImpl;
 import domain.Product;
-import domain.CartItem;
-
+import domain.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import service.CartItemService;
+import service.impl.CartItemServiceImpl;
+
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 @WebServlet("/CartAddServlet")
 public class CartAddServlet extends HttpServlet {
-    private ProductDao productsDao = new ProductDaoImpl();
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    
+    private CartItemService cartService = new CartItemServiceImpl();
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-
-        // 1. 验证登录
-        Object user = request.getSession().getAttribute("user");
-        if (user == null) {
-            request.setAttribute("login_msg", "请先登录后再加入购物车！");
-            request.getRequestDispatcher("/login.jsp").forward(request, response);
-            return;
-        }
-
-        // 2. 取商品
-        int pId = Integer.parseInt(request.getParameter("pId"));
-        Product product = productsDao.findById(pId);
-
-        // 3. 从 session 取购物车 List（key 统一用 cartItems）
-        java.util.List<CartItem> cartItems =
-            (java.util.List<CartItem>) request.getSession().getAttribute("cartItems");
-        if (cartItems == null) {
-            cartItems = new java.util.ArrayList<>();
-            request.getSession().setAttribute("cartItems", cartItems);
-        }
-
-        // 4. 已存在则数量+1，否则新增
-        boolean found = false;
-        for (CartItem item : cartItems) {
-            if (item.getProduct().getId() == pId) {
-                item.setQuantity(item.getQuantity() + 1);
-                found = true;
-                break;
+        doPost(request, response);
+    }
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        try {
+            // 1. 验证登录状态
+            Object user = request.getSession().getAttribute("user");
+            if (user == null) {
+                // 未登录，重定向到登录页
+                response.sendRedirect(request.getContextPath() + "/login.jsp");
+                return;
             }
+            
+            // 2. 获取参数
+            String pidStr = request.getParameter("pid");
+            String quantityStr = request.getParameter("quantity");
+            
+            // 参数校验
+            if (pidStr == null || pidStr.trim().isEmpty() || quantityStr == null || quantityStr.trim().isEmpty()) {
+                System.out.println("pid or quantity is not proper. CartAddServlet.java(44)");
+                response.sendRedirect(request.getContextPath() + "/CartViewServlet");
+                return;
+            }
+            
+            Integer pid = Integer.parseInt(pidStr);
+            Integer quantity = Integer.parseInt(quantityStr);
+            
+            if (quantity <= 0) {
+                response.sendRedirect(request.getContextPath() + "/CartViewServlet");
+                return;
+            }
+            
+            // 3. 获取用户信息
+            User loginUser = (User) user;
+            Integer uid = loginUser.getUid();
+            
+            // 4. 创建商品对象（只需要pid）
+            Product product = new Product();
+            product.setPid(pid);
+            
+            // 5. 添加到购物车
+            cartService.addToCart(uid, product, quantity);
+            
+            // 6. 重定向到购物车页面
+            response.sendRedirect(request.getContextPath() + "/CartViewServlet");
+            
+        } catch (NumberFormatException e) {
+            // 参数格式错误，只在控制台输出
+            System.err.println("CartAddServlet - 参数格式错误: " + e.getMessage());
+            e.printStackTrace();
+            response.sendRedirect(request.getContextPath() + "/CartViewServlet");
+        } catch (Exception e) {
+            // 其他异常，只在控制台输出
+            System.err.println("CartAddServlet - 添加购物车失败: " + e.getMessage());
+            e.printStackTrace();
+            response.sendRedirect(request.getContextPath() + "/CartViewServlet");
         }
-        if (!found) {
-            cartItems.add(new CartItem(product, 1));
-        }
-
-        // 5. 重定向到购物车页
-        response.sendRedirect(request.getContextPath() + "/CartViewServlet");
     }
 }

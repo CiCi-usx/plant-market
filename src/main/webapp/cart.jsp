@@ -56,15 +56,6 @@
         .animate-slide-in {
             animation: slideIn 0.35s ease-out both;
         }
-        /* Toast */
-        #toast {
-            position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(80px);
-            background: rgba(20,60,50,0.95); color: #5eead4; padding: .75rem 1.5rem;
-            border-radius: .75rem; border: 1px solid #115e59; font-size: .875rem;
-            opacity: 0; transition: all .3s ease; z-index: 9999; pointer-events: none;
-            backdrop-filter: blur(8px);
-        }
-        #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
         /* 数字输入框去除箭头 */
         input[type=number]::-webkit-inner-spin-button,
         input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
@@ -166,7 +157,7 @@
                      style="animation-delay:0.15s">
                     <div class="text-6xl mb-4 opacity-30">🛒</div>
                     <h3 class="text-lg font-medium text-teal-300 mb-2">购物车空空如也</h3>
-                    <p class="text-teal-500 text-sm mb-6">快去挑选心仪的苗木吧～</p>
+                    <p class="text-teal-500 text-sm mb-6">快去挑选心仪的苗木吧</p>
                     <a href="${pageContext.request.contextPath}/index.jsp"
                        class="inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-500
                               text-white px-8 py-3 rounded-xl text-sm font-bold
@@ -210,81 +201,81 @@
                             </div>
                         </div>
 
-                        <%-- 购物车表单，用于提交批量删除 --%>
+                        <%-- 购物车表单 --%>
                         <form id="cartForm" action="${pageContext.request.contextPath}/CartViewServlet" method="post">
-                        <%-- 表头（桌面端） --%>
-                        <div class="hidden sm:grid grid-cols-12 gap-4 px-5 py-2.5
-                                    bg-teal-900/50 rounded-lg text-xs text-teal-500 font-medium
-                                    border border-teal-800/40">
-                            <span class="col-span-1">选择</span>
-                            <span class="col-span-4">商品信息</span>
-                            <span class="col-span-2 text-center">单价</span>
-                            <span class="col-span-2 text-center">数量</span>
-                            <span class="col-span-2 text-right">小计</span>
-                            <span class="col-span-1 text-right">操作</span>
-                        </div>
+                            <%-- 表头（桌面端） --%>
+                            <div class="hidden sm:grid grid-cols-12 gap-4 px-5 py-2.5
+                                        bg-teal-900/50 rounded-lg text-xs text-teal-500 font-medium
+                                        border border-teal-800/40">
+                                <span class="col-span-1">选择</span>
+                                <span class="col-span-4">商品信息</span>
+                                <span class="col-span-2 text-center">单价</span>
+                                <span class="col-span-2 text-center">数量</span>
+                                <span class="col-span-2 text-right">小计</span>
+                                <span class="col-span-1 text-right">操作</span>
+                            </div>
 
-                        <%-- 商品行 --%>
-                        <c:forEach var="item" items="${cartItems}" varStatus="st">
-                                <div class="animate-slide-in"
-                                     style="animation-delay:${st.index * 0.05}s">
-                                    <div class="hidden sm:grid grid-cols-12 gap-4 items-center px-5 py-4
-                                                bg-teal-900/30 border border-teal-800/30 rounded-xl
-                                                hover:bg-teal-900/50 hover:border-teal-700/40
-                                                transition-all duration-200">
-                                        
-                                        <%-- 复选框 --%>
-                                        <div class="col-span-1">
-                                            <input type="checkbox" name="selectedIds" value="${item.product.id}" 
-                                                   class="item-checkbox w-4 h-4 rounded border-teal-600 bg-teal-900 text-teal-500 focus:ring-teal-500">
-                                        </div>
-
-                                        <%-- 商品信息 --%>
-                                        <div class="col-span-4 flex items-center gap-4 min-w-0">
-                                            <a href="${pageContext.request.contextPath}/ProductDetailServlet?pId=${item.product.id}"
-                                               class="shrink-0">
-                                                <img src="${pageContext.request.contextPath}/assets/images/${item.product.img}" alt="${item.product.name}"
-                                                     class="w-16 h-16 object-cover rounded-lg border border-teal-800/50
-                                                            hover:border-teal-600/50 transition-colors" />
-                                            </a>
-                                            <a href="${pageContext.request.contextPath}/ProductDetailServlet?pId=${item.product.id}"
-                                               class="text-sm font-medium text-teal-100 hover:text-teal-300
-                                                      transition-colors truncate">
-                                                ${item.product.name}
-                                            </a>
-                                        </div>
-                                        <%-- 单价 --%>
-                                        <div class="col-span-2 text-center">
-                                            <span class="text-sm text-teal-300">
-                                                ¥<fmt:formatNumber value="${item.product.price}" pattern="#,##0.00" />
-                                            </span>
-                                        </div>
-                                        <%-- 数量 --%>
-                                            <div class="col-span-2 flex justify-center">
-                                                <div class="flex items-center gap-0 bg-teal-950/60 rounded-lg border border-teal-800/50">
-                                                    <input id="qty-${item.product.id}" type="number" value="${item.quantity}" min="1" readonly class="w-14 h-7 text-center bg-transparent text-teal-100
-                                                              text-xs font-medium border-x border-teal-800/50 cursor-not-allowed" />
-                                                </div>
+                            <%-- 商品行 --%>
+                            <c:forEach var="item" items="${cartItems}" varStatus="st">
+                                    <div class="animate-slide-in"
+                                        style="animation-delay:${st.index * 0.05}s">
+                                        <div class="hidden sm:grid grid-cols-12 gap-4 items-center px-5 py-4
+                                                    bg-teal-900/30 border border-teal-800/30 rounded-xl
+                                                    hover:bg-teal-900/50 hover:border-teal-700/40
+                                                    transition-all duration-200">
+                                            
+                                            <%-- 复选框 --%>
+                                            <div class="col-span-1">
+                                                <input type="checkbox" name="selectedIds" value="${item.product.id}" 
+                                                    class="item-checkbox w-4 h-4 rounded border-teal-600 bg-teal-900 text-teal-500 focus:ring-teal-500">
                                             </div>
-                                        <%-- 小计 --%>
-                                        <div class="col-span-2 text-right">
-                                            <span id="sub-${item.product.id}"
-                                                  class="text-sm font-bold text-orange-400">
-                                                ¥<fmt:formatNumber value="${item.product.price * item.quantity}" pattern="#,##0.00" />
-                                            </span>
-                                        </div>
-                                        <%-- 删除 --%>
-                                        <div class="col-span-1 text-right">
-                                            <a href="${pageContext.request.contextPath}/CartViewServlet?action=remove&pId=${item.product.id}"
-                                               onclick="return confirm('确定移除该商品？')"
-                                               class="text-teal-600 hover:text-red-400 transition-colors duration-200"
-                                               title="移除">
-                                                <i class="fa-regular fa-trash-can"></i>
-                                            </a>
+
+                                            <%-- 商品信息 --%>
+                                            <div class="col-span-4 flex items-center gap-4 min-w-0">
+                                                <a href="${pageContext.request.contextPath}/ProductDetailServlet?pId=${item.product.id}"
+                                                class="shrink-0">
+                                                    <img src="${pageContext.request.contextPath}/assets/images/${item.product.img}" alt="${item.product.name}"
+                                                        class="w-16 h-16 object-cover rounded-lg border border-teal-800/50
+                                                                hover:border-teal-600/50 transition-colors" />
+                                                </a>
+                                                <a href="${pageContext.request.contextPath}/ProductDetailServlet?pId=${item.product.id}"
+                                                class="text-sm font-medium text-teal-100 hover:text-teal-300
+                                                        transition-colors truncate">
+                                                    ${item.product.name}
+                                                </a>
+                                            </div>
+                                            <%-- 单价 --%>
+                                            <div class="col-span-2 text-center">
+                                                <span class="text-sm text-teal-300">
+                                                    ¥<fmt:formatNumber value="${item.product.price}" pattern="#,##0.00" />
+                                                </span>
+                                            </div>
+                                            <%-- 数量 --%>
+                                                <div class="col-span-2 flex justify-center">
+                                                    <div class="flex items-center gap-0 bg-teal-950/60 rounded-lg border border-teal-800/50">
+                                                        <input id="qty-${item.product.id}" type="number" value="${item.quantity}" min="1" readonly class="w-14 h-7 text-center bg-transparent text-teal-100
+                                                                text-xs font-medium border-x border-teal-800/50 cursor-not-allowed" />
+                                                    </div>
+                                                </div>
+                                            <%-- 小计 --%>
+                                            <div class="col-span-2 text-right">
+                                                <span id="sub-${item.product.id}"
+                                                    class="text-sm font-bold text-orange-400">
+                                                    ¥<fmt:formatNumber value="${item.product.price * item.quantity}" pattern="#,##0.00" />
+                                                </span>
+                                            </div>
+                                            <%-- 删除 --%>
+                                            <div class="col-span-1 text-right">
+                                                <a href="${pageContext.request.contextPath}/CartViewServlet?action=remove&pId=${item.product.id}"
+                                                onclick="return confirm('确定移除该商品？')"
+                                                class="text-teal-600 hover:text-red-400 transition-colors duration-200"
+                                                title="移除">
+                                                    <i class="fa-regular fa-trash-can"></i>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                        </c:forEach>
+                            </c:forEach>
                         </form><%-- /cart-form --%>
 
                     </div><%-- /cart-left --%>
@@ -350,20 +341,10 @@
         </div>
     </footer>
 
-    <div id="toast"></div>
-
     <script>
         const SERVLET_CART_VIEW = "${pageContext.request.contextPath}/CartViewServlet";
         // 新增这一行：在浏览器控制台打印路径
         console.log("当前的请求路径是:", SERVLET_CART_VIEW);
-
-        function showToast(msg, duration) {
-            duration = duration || 2000;
-            const el = document.getElementById('toast');
-            el.textContent = msg;
-            el.classList.add('show');
-            setTimeout(() => el.classList.remove('show'), duration);
-        }
 
         // 全选/反选逻辑
             function toggleSelectAll(source) {
