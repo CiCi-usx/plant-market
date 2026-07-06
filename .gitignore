@@ -15,3 +15,7 @@ application.properties
 druid.properties
 config.properties
 *.conf
+
+# 文档文件
+prob.txt
+mvn.txt

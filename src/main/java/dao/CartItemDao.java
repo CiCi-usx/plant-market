@@ -1,9 +1,8 @@
-
 package dao;
 
 import domain.CartItem;
 
-public interface ShoppingCartDao {
+public interface CartItemDao {
     /**
      * 检查某用户购物车中是否已存在某商品
      */
