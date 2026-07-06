@@ -56,7 +56,7 @@ public class CartViewServlet extends HttpServlet {
         if (cartItems != null) {
             for (CartItem item : cartItems) {
                 totalPrice = totalPrice.add(
-                    item.getProduct().getPrice().multiply(new BigDecimal.valueOf(item.getQuantity()))
+                    item.getProduct().getPrice().multiply(BigDecimal.valueOf(item.getQuantity()))
                 );
                 totalCount += item.getQuantity();
             }
