@@ -5,7 +5,7 @@ import dao.impl.CartItemDaoImpl;
 import domain.CartItem;
 import service.ShoppingCartService;
 
-public class ShoppingCartServiceImpl implements ShoppingCartService {
+public class CartItemServiceImpl implements CartItemService {
     private CartItemDao dao = new CartItemDaoImpl();
 
     @Override

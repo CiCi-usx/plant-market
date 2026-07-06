@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * 商品持久层接口实现类
- * @version 2026-06-02
+ * @version 2026-07-06
  */
 public class ProductDaoImpl implements ProductDao {
     
