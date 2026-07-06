@@ -1,6 +1,6 @@
 package dao.impl;
 
-import dao.ShoppingCartDao;
+import dao.CartItemDao;
 import domain.CartItem;
 import domain.Product;
 import util.JDBCUtils;
@@ -9,7 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class ShoppingCartDaoImpl implements ShoppingCartDao {
+public class CartItemDaoImpl implements CartItemDao {
 
     @Override
     public CartItem isExisted(int uid, int pid) {

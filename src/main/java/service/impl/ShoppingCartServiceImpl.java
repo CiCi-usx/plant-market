@@ -1,12 +1,12 @@
 package service.impl;
 
-import dao.ShoppingCartDao;
-import dao.impl.ShoppingCartDaoImpl;
+import dao.CartItemDao;
+import dao.impl.CartItemDaoImpl;
 import domain.CartItem;
 import service.ShoppingCartService;
 
 public class ShoppingCartServiceImpl implements ShoppingCartService {
-    private ShoppingCartDao dao = new ShoppingCartDaoImpl();
+    private CartItemDao dao = new CartItemDaoImpl();
 
     @Override
     public void add(CartItem item) {
