@@ -17,6 +17,7 @@ config.properties
 *.conf
 
 # 文档文件
+src/main/resources/doc/
 prob.txt
 mvn.txt
 readme.md
